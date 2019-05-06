@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import UIKit
 
-extension ViewController {
+extension PlannedTripVC {
     
     func tripTableViewConstraints() {
         tripTableView.translatesAutoresizingMaskIntoConstraints = false

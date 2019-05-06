@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class PlannedTripVC: UIViewController {
     
-    var tripTableView = UITableView()
+    var tripTableView = UITableView(frame: .zero)
     let identifier = "cell"
 
     override func viewDidLoad() {
@@ -18,6 +18,10 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         view.backgroundColor = .white
         setNav()
+    }
+    
+    override func loadView() {
+        super.loadView()
         setTableView()
     }
     
@@ -37,15 +41,16 @@ class ViewController: UIViewController {
     }
     
     @objc func addTapped() {
-        print("add tapped")
+        let newVC = AddTripVC()
+        navigationController?.pushViewController(newVC, animated: true)
     }
 }
 
-extension ViewController: UITableViewDelegate {
+extension PlannedTripVC: UITableViewDelegate {
     
 }
 
-extension ViewController: UITableViewDataSource {
+extension PlannedTripVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }

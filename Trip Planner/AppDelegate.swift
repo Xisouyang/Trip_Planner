@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // make nav controller root
         // make visible
         window = UIWindow(frame: UIScreen.main.bounds)
-        let mainVC = ViewController(nibName: nil, bundle: nil)
+        let mainVC = PlannedTripVC(nibName: nil, bundle: nil)
         let nav = UINavigationController()
         nav.viewControllers = [mainVC]
         window!.rootViewController = nav
