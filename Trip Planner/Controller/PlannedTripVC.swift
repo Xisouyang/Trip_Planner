@@ -12,6 +12,7 @@ class PlannedTripVC: UIViewController {
     
     var tripTableView = UITableView(frame: .zero)
     let identifier = "cell"
+    static var tripArr: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,11 +53,12 @@ extension PlannedTripVC: UITableViewDelegate {
 
 extension PlannedTripVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return PlannedTripVC.tripArr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        cell.textLabel?.text = PlannedTripVC.tripArr[indexPath.row]
         return cell
     }
 }

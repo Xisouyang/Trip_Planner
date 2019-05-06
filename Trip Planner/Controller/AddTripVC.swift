@@ -44,6 +44,7 @@ class AddTripVC: UIViewController {
         navigationItem.title = "Add Trips"
         navigationController?.navigationBar.backgroundColor = .lightGray
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(addTapped))
     }
     
     func setView() {
@@ -55,6 +56,13 @@ class AddTripVC: UIViewController {
     
     @objc func cancelTapped() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func addTapped() {
+        let newVC = PlannedTripVC()
+        guard let unwrappedText = addTripTextField.text else { return }
+        PlannedTripVC.tripArr.append(unwrappedText)
+        navigationController?.initRootViewController(vc: newVC)
     }
 
     /*

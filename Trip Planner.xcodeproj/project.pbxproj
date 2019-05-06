@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5D4735D8227FF56C00A53896 /* AddTripVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4735D7227FF56C00A53896 /* AddTripVC.swift */; };
 		5D4735DA227FF9C700A53896 /* AddTripVC+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4735D9227FF9C700A53896 /* AddTripVC+Constraints.swift */; };
+		5D4735DD228001BD00A53896 /* UINavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4735DC228001BD00A53896 /* UINavController.swift */; };
 		5DE98AC02273C1960033FD91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE98ABF2273C1960033FD91 /* AppDelegate.swift */; };
 		5DE98AC22273C1960033FD91 /* PlannedTripVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE98AC12273C1960033FD91 /* PlannedTripVC.swift */; };
 		5DE98AC82273C1960033FD91 /* Trip_Planner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5DE98AC62273C1960033FD91 /* Trip_Planner.xcdatamodeld */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		5D4735D7227FF56C00A53896 /* AddTripVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTripVC.swift; sourceTree = "<group>"; };
 		5D4735D9227FF9C700A53896 /* AddTripVC+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddTripVC+Constraints.swift"; sourceTree = "<group>"; };
+		5D4735DC228001BD00A53896 /* UINavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavController.swift; sourceTree = "<group>"; };
 		5DE98ABC2273C1960033FD91 /* Trip Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trip Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DE98ABF2273C1960033FD91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5DE98AC12273C1960033FD91 /* PlannedTripVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannedTripVC.swift; sourceTree = "<group>"; };
@@ -62,6 +64,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D4735DB2280018F00A53896 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5D4735DC228001BD00A53896 /* UINavController.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		5DE98AB32273C1960033FD91 = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				5DE98ABF2273C1960033FD91 /* AppDelegate.swift */,
+				5D4735DB2280018F00A53896 /* Extensions */,
 				5DE98AE52273C8E70033FD91 /* ControllerConstraints */,
 				5DE98AE42273C8D60033FD91 /* Controller */,
 				5DE98AC92273C1990033FD91 /* Assets.xcassets */,
@@ -224,6 +235,7 @@
 				5DE98AC22273C1960033FD91 /* PlannedTripVC.swift in Sources */,
 				5DE98AC82273C1960033FD91 /* Trip_Planner.xcdatamodeld in Sources */,
 				5DE98AC02273C1960033FD91 /* AppDelegate.swift in Sources */,
+				5D4735DD228001BD00A53896 /* UINavController.swift in Sources */,
 				5D4735D8227FF56C00A53896 /* AddTripVC.swift in Sources */,
 				5D4735DA227FF9C700A53896 /* AddTripVC+Constraints.swift in Sources */,
 				5DE98AE32273C7CC0033FD91 /* TripTV+Constraints.swift in Sources */,
