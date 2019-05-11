@@ -49,6 +49,11 @@ class PlannedTripVC: UIViewController {
 
 extension PlannedTripVC: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let newVC = SpecificTripVC()
+        SpecificTripVC.plannedTrip = PlannedTripVC.tripArr[indexPath.row]
+        navigationController?.pushViewController(newVC, animated: true)
+    }
 }
 
 extension PlannedTripVC: UITableViewDataSource {

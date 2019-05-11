@@ -22,7 +22,7 @@ class AddTripVC: UIViewController {
         textField.textAlignment = .center
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 1
-        textField.layer.cornerRadius = 5
+        textField.layer.cornerRadius = 6
         textField.placeholder = "Sample Trip"
         return textField
     }()
@@ -74,5 +74,4 @@ class AddTripVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
