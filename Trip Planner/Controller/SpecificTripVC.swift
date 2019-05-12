@@ -60,7 +60,7 @@ class SpecificTripVC: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     @objc func addTapped() {
-        let newVC = WayPointVC()
+        let newVC = WaypointVC()
         navigationController?.pushViewController(newVC, animated: true)
     }
     

@@ -6,30 +6,97 @@
 //  Copyright © 2019 Stephen Ouyang. All rights reserved.
 //
 
-import UIKit
+//    // 1. Set up navbar - UI done
+//    // 2. Set up search bar - done
+//    // 3. Set up tableview
+//    // 4. Set up mapview
 
-class WayPointVC: UIViewController {
+
+import UIKit
+import GooglePlaces
+
+class WaypointVC: UIViewController {
+    
+    var waypointLabel: UILabel = {
+       let label = UILabel()
+       label.text = "Add Waypoint"
+       return label
+    }()
+    
+    var resultsViewController: GMSAutocompleteResultsViewController?
+    var searchController: UISearchController?
+    var resultView: UITextView?
+    // creates view to hold search bar so we can actually touch the search bar
+    let searchBarSubview = UIView(frame: .zero)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        ServiceLayer.request(router: Router.getPlaces) { (result: Result<PlaceModel>) in
-            print(result)
-        }
-        
-        
-        // Do any additional setup after loading the view.
+        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        setNav()
+        initSearchBar()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setNav() {
+        navigationItem.title = waypointLabel.text
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(savedTapped))
+        navigationController?.navigationBar.backgroundColor = .lightGray
     }
-    */
+    
+    func initSearchBar() {
+        
+        // creates interface
+        resultsViewController = GMSAutocompleteResultsViewController()
+        resultsViewController?.delegate = self
+        
+        // creates search bar
+        searchController = UISearchController(searchResultsController: resultsViewController)
+        searchController?.searchResultsUpdater = resultsViewController
+        
+        view.addSubview(searchBarSubview)
+        searchBarViewConstraints()
 
+        searchBarSubview.addSubview((searchController?.searchBar)!)
+        searchController?.searchBar.sizeToFit()
+        searchController?.hidesNavigationBarDuringPresentation = false
+        
+        // When UISearchController presents the results view, present it in
+        // this view controller, not one further up the chain.
+        definesPresentationContext = true
+    }
+    
+        @objc func cancelTapped() {
+            navigationController?.popViewController(animated: true)
+        }
+    
+        @objc func savedTapped() {
+            print("save tapped")
+        }
+}
+
+// Handle the user's selection.
+extension WaypointVC: GMSAutocompleteResultsViewControllerDelegate {
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
+                           didAutocompleteWith place: GMSPlace) {
+        searchController?.isActive = false
+        // Do something with the selected place.
+        print("Place name: \(String(describing: place.name))")
+        print("Place address: \(String(describing: place.formattedAddress))")
+        print("Place attributions: \(String(describing: place.attributions))")
+    }
+    
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
+                           didFailAutocompleteWithError error: Error){
+        // TODO: handle the error.
+        print("Error: ", error.localizedDescription)
+    }
+    
+    // Turn the network activity indicator on and off again.
+    func didRequestAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
 }
