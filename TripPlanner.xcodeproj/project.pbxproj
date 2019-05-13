@@ -98,7 +98,6 @@
 				969AE107D9DD79C5B2F2E074 /* Pods-Trip PlannerTests.debug.xcconfig */,
 				13BF930ED536FED6EC8D5C74 /* Pods-Trip PlannerTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -114,8 +113,8 @@
 		5DE98AB32273C1960033FD91 = {
 			isa = PBXGroup;
 			children = (
-				5DE98ABE2273C1960033FD91 /* Trip Planner */,
-				5DE98AD62273C1990033FD91 /* Trip PlannerTests */,
+				5DE98ABE2273C1960033FD91 /* TripPlanner */,
+				5DE98AD62273C1990033FD91 /* TripPlannerTests */,
 				5DE98ABD2273C1960033FD91 /* Products */,
 				3D6B586FA83962596C7C8BAC /* Pods */,
 				E7AD73590BBA735CE5D320C9 /* Frameworks */,
@@ -131,7 +130,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5DE98ABE2273C1960033FD91 /* Trip Planner */ = {
+		5DE98ABE2273C1960033FD91 /* TripPlanner */ = {
 			isa = PBXGroup;
 			children = (
 				5DE98ABF2273C1960033FD91 /* AppDelegate.swift */,
@@ -144,16 +143,16 @@
 				5DE98ACE2273C1990033FD91 /* Info.plist */,
 				5DE98AC62273C1960033FD91 /* Trip_Planner.xcdatamodeld */,
 			);
-			path = "Trip Planner";
+			path = TripPlanner;
 			sourceTree = "<group>";
 		};
-		5DE98AD62273C1990033FD91 /* Trip PlannerTests */ = {
+		5DE98AD62273C1990033FD91 /* TripPlannerTests */ = {
 			isa = PBXGroup;
 			children = (
 				5DE98AD72273C1990033FD91 /* Trip_PlannerTests.swift */,
 				5DE98AD92273C1990033FD91 /* Info.plist */,
 			);
-			path = "Trip PlannerTests";
+			path = TripPlannerTests;
 			sourceTree = "<group>";
 		};
 		5DE98AE42273C8D60033FD91 /* Controller */ = {
@@ -265,7 +264,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5DE98AB72273C1960033FD91 /* Build configuration list for PBXProject "Trip Planner" */;
+			buildConfigurationList = 5DE98AB72273C1960033FD91 /* Build configuration list for PBXProject "TripPlanner" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -550,7 +549,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R7Y8QKEC95;
-				INFOPLIST_FILE = "Trip Planner/Info.plist";
+				INFOPLIST_FILE = TripPlanner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -569,7 +568,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R7Y8QKEC95;
-				INFOPLIST_FILE = "Trip Planner/Info.plist";
+				INFOPLIST_FILE = TripPlanner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -628,7 +627,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5DE98AB72273C1960033FD91 /* Build configuration list for PBXProject "Trip Planner" */ = {
+		5DE98AB72273C1960033FD91 /* Build configuration list for PBXProject "TripPlanner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5DE98ADA2273C1990033FD91 /* Debug */,

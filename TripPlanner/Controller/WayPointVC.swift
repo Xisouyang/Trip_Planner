@@ -17,6 +17,8 @@ import GooglePlaces
 
 class WaypointVC: UIViewController {
     
+    let identifier = "cell"
+    
     var waypointLabel: UILabel = {
        let label = UILabel()
        label.text = "Add Waypoint"
@@ -28,12 +30,22 @@ class WaypointVC: UIViewController {
     var resultView: UITextView?
     // creates view to hold search bar so we can actually touch the search bar
     let searchBarSubview = UIView(frame: .zero)
+    let waypointTableView = UITableView(frame: .zero)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         setNav()
         initSearchBar()
+        setTableView()
+    }
+    
+    func setTableView() {
+        waypointTableView.register(UITableViewCell.self, forCellReuseIdentifier: identifier)
+        waypointTableView.delegate = self
+        waypointTableView.dataSource = self
+        view.addSubview(waypointTableView)
+        tableViewConstraints()
     }
     
     func setNav() {
@@ -43,6 +55,7 @@ class WaypointVC: UIViewController {
         navigationController?.navigationBar.backgroundColor = .lightGray
     }
     
+    // creates search bar and put at top of view
     func initSearchBar() {
         
         // creates interface
@@ -98,5 +111,20 @@ extension WaypointVC: GMSAutocompleteResultsViewControllerDelegate {
     
     func didUpdateAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+}
+
+extension WaypointVC: UITableViewDelegate {
+    
+}
+
+extension WaypointVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        return cell
     }
 }
