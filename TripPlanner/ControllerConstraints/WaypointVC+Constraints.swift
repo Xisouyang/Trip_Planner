@@ -21,7 +21,15 @@ extension WaypointVC {
         
         waypointTableView.translatesAutoresizingMaskIntoConstraints = false
         waypointTableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        waypointTableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive = true
+        waypointTableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35).isActive = true
         waypointTableView.topAnchor.constraint(equalTo: searchBarSubview.bottomAnchor).isActive = true
+    }
+    
+    func mapViewConstraints() {
+        
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        mapView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        mapView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive = true
+        mapView.topAnchor.constraint(equalTo: waypointTableView.bottomAnchor).isActive = true
     }
 }

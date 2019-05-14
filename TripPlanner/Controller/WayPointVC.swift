@@ -13,6 +13,7 @@
 
 
 import UIKit
+import MapKit
 import GooglePlaces
 
 class WaypointVC: UIViewController {
@@ -27,17 +28,30 @@ class WaypointVC: UIViewController {
     
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
-    var resultView: UITextView?
     // creates view to hold search bar so we can actually touch the search bar
     let searchBarSubview = UIView(frame: .zero)
     let waypointTableView = UITableView(frame: .zero)
+    let mapView = MKMapView(frame: .zero)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         setNav()
+    }
+    
+    override func loadView() {
+        super.loadView()
         initSearchBar()
         setTableView()
+        setMapView()
+    }
+    
+    func setMapView() {
+        mapView.mapType = .standard
+        mapView.isZoomEnabled = true
+        mapView.isScrollEnabled = true
+        view.addSubview(mapView)
+        mapViewConstraints()
     }
     
     func setTableView() {
@@ -78,13 +92,13 @@ class WaypointVC: UIViewController {
         definesPresentationContext = true
     }
     
-        @objc func cancelTapped() {
-            navigationController?.popViewController(animated: true)
-        }
-    
-        @objc func savedTapped() {
-            print("save tapped")
-        }
+    @objc func cancelTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+
+    @objc func savedTapped() {
+        print("save tapped")
+    }
 }
 
 // Handle the user's selection.
@@ -120,7 +134,7 @@ extension WaypointVC: UITableViewDelegate {
 
 extension WaypointVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
