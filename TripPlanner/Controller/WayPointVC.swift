@@ -12,7 +12,8 @@
 // 4. Set up mapview - done
 
 // add name of the place to table view - done
-// when clicking on the tableview, make call to api to get back coordinates
+// current api already gives back coordinates
+// need to create a custom cell to pass coordinates to
 // then create region, set the span
 // create annotation and give coordinates to annotation, add to mapview
 
@@ -23,15 +24,13 @@ import GooglePlaces
 
 class WaypointVC: UIViewController {
     
-    let identifier = "cell"
-    
     var waypointLabel: UILabel = {
        let label = UILabel()
        label.text = "Add Waypoint"
        return label
     }()
     
-    var placesList: [String] = [] {
+    var placesList: [Waypoint] = [] {
         didSet {
             waypointTableView.reloadData()
         }
@@ -60,12 +59,29 @@ class WaypointVC: UIViewController {
         mapView.mapType = .standard
         mapView.isZoomEnabled = true
         mapView.isScrollEnabled = true
+        mapView.delegate = self
         view.addSubview(mapView)
         mapViewConstraints()
     }
     
+    func addWaypoints(mapView: MKMapView, cell: WaypointCell) {
+        
+        guard let location = cell.waypoint?.coordinates else {
+            return
+        }
+        
+        let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
+        let region = MKCoordinateRegion(center: location, span: span)
+        mapView.setRegion(region, animated: true)
+        
+        let annotation = MKPointAnnotation()
+        annotation.title = cell.waypoint?.name
+        annotation.coordinate = location
+        mapView.addAnnotation(annotation)
+    }
+    
     func setTableView() {
-        waypointTableView.register(UITableViewCell.self, forCellReuseIdentifier: identifier)
+        waypointTableView.register(WaypointCell.self, forCellReuseIdentifier: WaypointCell.identifier)
         waypointTableView.delegate = self
         waypointTableView.dataSource = self
         view.addSubview(waypointTableView)
@@ -117,11 +133,11 @@ extension WaypointVC: GMSAutocompleteResultsViewControllerDelegate {
                            didAutocompleteWith place: GMSPlace) {
         searchController?.isActive = false
         // Do something with the selected place.
-//        print("Place name: \(String(describing: place.name))")
-//        print("Place address: \(String(describing: place.formattedAddress))")
-//        print("Place attributions: \(String(describing: place.attributions))")
+        print("Place name: \(String(describing: place.name))")
+        print("Place coordinates: \(String(describing: place.coordinate))")
         if let unwrappedPlaceName = place.name {
-            placesList.append(unwrappedPlaceName)
+            let waypoint = Waypoint(coordinates: place.coordinate, name: unwrappedPlaceName)
+            placesList.append(waypoint)
         }
     }
     
@@ -141,18 +157,44 @@ extension WaypointVC: GMSAutocompleteResultsViewControllerDelegate {
     }
 }
 
+// when users interact with table view
 extension WaypointVC: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! WaypointCell
+        addWaypoints(mapView: mapView, cell: cell)
+    }
 }
 
+// how data represented with table view
 extension WaypointVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return placesList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = placesList[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: WaypointCell.identifier, for: indexPath) as! WaypointCell
+        cell.textLabel?.text = placesList[indexPath.row].name
+        cell.waypoint = placesList[indexPath.row]
         return cell
+    }
+}
+
+extension WaypointVC: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard annotation is MKPointAnnotation else { return nil }
+        
+        let identifier = "Annotation"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView!.canShowCallout = true
+        } else {
+            annotationView!.annotation = annotation
+        }
+        
+        return annotationView
     }
 }
