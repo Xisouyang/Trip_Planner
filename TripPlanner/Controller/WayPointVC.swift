@@ -6,10 +6,15 @@
 //  Copyright © 2019 Stephen Ouyang. All rights reserved.
 //
 
-//    // 1. Set up navbar - UI done
-//    // 2. Set up search bar - done
-//    // 3. Set up tableview
-//    // 4. Set up mapview
+// 1. Set up navbar - UI done
+// 2. Set up search bar - done
+// 3. Set up tableview - done
+// 4. Set up mapview - done
+
+// add name of the place to table view - done
+// when clicking on the tableview, make call to api to get back coordinates
+// then create region, set the span
+// create annotation and give coordinates to annotation, add to mapview
 
 
 import UIKit
@@ -26,6 +31,11 @@ class WaypointVC: UIViewController {
        return label
     }()
     
+    var placesList: [String] = [] {
+        didSet {
+            waypointTableView.reloadData()
+        }
+    }
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
     // creates view to hold search bar so we can actually touch the search bar
@@ -107,9 +117,12 @@ extension WaypointVC: GMSAutocompleteResultsViewControllerDelegate {
                            didAutocompleteWith place: GMSPlace) {
         searchController?.isActive = false
         // Do something with the selected place.
-        print("Place name: \(String(describing: place.name))")
-        print("Place address: \(String(describing: place.formattedAddress))")
-        print("Place attributions: \(String(describing: place.attributions))")
+//        print("Place name: \(String(describing: place.name))")
+//        print("Place address: \(String(describing: place.formattedAddress))")
+//        print("Place attributions: \(String(describing: place.attributions))")
+        if let unwrappedPlaceName = place.name {
+            placesList.append(unwrappedPlaceName)
+        }
     }
     
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
@@ -134,11 +147,12 @@ extension WaypointVC: UITableViewDelegate {
 
 extension WaypointVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return placesList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = placesList[indexPath.row]
         return cell
     }
 }
