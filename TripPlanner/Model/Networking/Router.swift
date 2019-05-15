@@ -8,8 +8,8 @@
 
 import Foundation
 
-let thePlist = Plist(name: "Info")
-let apiKey: String = thePlist?.getAPIKeyInPlistFile() as! String
+    let thePlist = Plist(name: "Info")
+    let apiKey: String = thePlist?.getAPIKeyInPlistFile() as! String
 
     enum Router {
     case getPlaces

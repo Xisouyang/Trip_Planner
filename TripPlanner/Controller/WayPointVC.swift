@@ -64,21 +64,21 @@ class WaypointVC: UIViewController {
         mapViewConstraints()
     }
     
-    func addWaypoints(mapView: MKMapView, cell: WaypointCell) {
-        
-        guard let location = cell.waypoint?.coordinates else {
-            return
-        }
-        
-        let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
-        let region = MKCoordinateRegion(center: location, span: span)
-        mapView.setRegion(region, animated: true)
-        
-        let annotation = MKPointAnnotation()
-        annotation.title = cell.waypoint?.name
-        annotation.coordinate = location
-        mapView.addAnnotation(annotation)
-    }
+//    func addWaypoints(mapView: MKMapView, cell: WaypointCell) {
+//
+//        guard let location = cell.waypoint?.coordinates else {
+//            return
+//        }
+//
+//        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+//        let region = MKCoordinateRegion(center: location, span: span)
+//        mapView.setRegion(region, animated: true)
+//
+//        let annotation = MKPointAnnotation()
+//        annotation.title = cell.waypoint?.name
+//        annotation.coordinate = location
+//        mapView.addAnnotation(annotation)
+//    }
     
     func setTableView() {
         waypointTableView.register(WaypointCell.self, forCellReuseIdentifier: WaypointCell.identifier)
@@ -124,6 +124,7 @@ class WaypointVC: UIViewController {
 
     @objc func savedTapped() {
         print("save tapped")
+        
     }
 }
 
@@ -135,10 +136,10 @@ extension WaypointVC: GMSAutocompleteResultsViewControllerDelegate {
         // Do something with the selected place.
         print("Place name: \(String(describing: place.name))")
         print("Place coordinates: \(String(describing: place.coordinate))")
-        if let unwrappedPlaceName = place.name {
-            let waypoint = Waypoint(coordinates: place.coordinate, name: unwrappedPlaceName)
-            placesList.append(waypoint)
-        }
+//        if let unwrappedPlaceName = place.name {
+//            let waypoint = Waypoint(coordinates: place.coordinate, name: unwrappedPlaceName)
+//            placesList.append(waypoint)
+//        }
     }
     
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
@@ -162,7 +163,7 @@ extension WaypointVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! WaypointCell
-        addWaypoints(mapView: mapView, cell: cell)
+//        addWaypoints(mapView: mapView, cell: cell)
     }
 }
 
@@ -194,7 +195,6 @@ extension WaypointVC: MKMapViewDelegate {
         } else {
             annotationView!.annotation = annotation
         }
-        
         return annotationView
     }
 }

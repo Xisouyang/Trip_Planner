@@ -10,6 +10,8 @@ import UIKit
 
 class AddTripVC: UIViewController {
     
+    let manager = CoreDataManager.sharedManager
+    
     var addTripLabel: UILabel = {
         let tripLabel = UILabel(frame: .zero)
         tripLabel.sizeToFit()
@@ -61,7 +63,8 @@ class AddTripVC: UIViewController {
     @objc func addTapped() {
         let newVC = PlannedTripVC()
         guard let unwrappedText = addTripTextField.text else { return }
-        PlannedTripVC.tripArr.append(unwrappedText)
+        let newTrip = manager.createTrip(tripName: unwrappedText)
+        PlannedTripVC.tripArr.append(newTrip as! Trip)
         navigationController?.initRootViewController(vc: newVC)
     }
 

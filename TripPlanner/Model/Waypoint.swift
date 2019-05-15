@@ -9,13 +9,13 @@
 import Foundation
 import MapKit
 
-struct Waypoint {
-    
-    var coordinates: CLLocationCoordinate2D?
-    var name: String?
-    
-    init(coordinates: CLLocationCoordinate2D, name: String) {
-        self.coordinates = coordinates
-        self.name = name
-    }
-}
+//struct Waypoint {
+//
+//    var coordinates: CLLocationCoordinate2D?
+//    var name: String?
+//
+//    init(coordinates: CLLocationCoordinate2D, name: String) {
+//        self.coordinates = coordinates
+//        self.name = name
+//    }
+//}

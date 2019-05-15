@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
 class PlannedTripVC: UIViewController {
     
     var tripTableView = UITableView(frame: .zero)
     let identifier = "cell"
-    static var tripArr: [String] = []
+    static var tripArr: [Trip] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,7 @@ class PlannedTripVC: UIViewController {
     override func loadView() {
         super.loadView()
         setTableView()
+        PlannedTripVC.tripArr = CoreDataManager.sharedManager.fetchAllTrips() as! [Trip]
     }
     
     func setNav() {
@@ -51,8 +53,18 @@ extension PlannedTripVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let newVC = SpecificTripVC()
-        SpecificTripVC.plannedTrip = PlannedTripVC.tripArr[indexPath.row]
+        SpecificTripVC.plannedTrip = PlannedTripVC.tripArr[indexPath.row].name
         navigationController?.pushViewController(newVC, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let object = PlannedTripVC.tripArr[indexPath.row]
+            PlannedTripVC.tripArr.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            CoreDataManager.sharedManager.removeItem(objectID: object.objectID)
+            CoreDataManager.sharedManager.saveContext()
+        }
     }
 }
 
@@ -63,7 +75,7 @@ extension PlannedTripVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-        cell.textLabel?.text = PlannedTripVC.tripArr[indexPath.row]
+        cell.textLabel?.text = PlannedTripVC.tripArr[indexPath.row].name
         return cell
     }
 }
