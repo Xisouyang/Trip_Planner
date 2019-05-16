@@ -6,29 +6,11 @@
 //  Copyright © 2019 Stephen Ouyang. All rights reserved.
 //
 
-// 1. Set up navbar - UI done
-// 2. Set up search bar - done
-// 3. Set up tableview - done
-// 4. Set up mapview - done
-
-// add name of the place to table view - done
-// current api already gives back coordinates
-// need to create a custom cell to pass coordinates to
-// then create region, set the span
-// create annotation and give coordinates to annotation, add to mapview
-
-
 import UIKit
 import MapKit
 import GooglePlaces
 
 class WaypointVC: UIViewController {
-        
-    var waypointLabel: UILabel = {
-       let label = UILabel()
-       label.text = "Add Waypoint"
-       return label
-    }()
     
     var plannedTrip: String?
     var placesList: [Waypoint] = []
@@ -87,8 +69,8 @@ class WaypointVC: UIViewController {
     }
     
     func setNav() {
-        navigationItem.title = waypointLabel.text
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
+        navigationItem.title = plannedTrip
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(savedTapped))
         navigationController?.navigationBar.backgroundColor = .lightGray
     }
@@ -135,13 +117,15 @@ class WaypointVC: UIViewController {
         definesPresentationContext = true
     }
     
-    @objc func cancelTapped() {
+    @objc func backTapped() {
         navigationController?.popViewController(animated: true)
     }
 
     @objc func savedTapped() {
         print("save tapped")
         CoreDataManager.sharedManager.saveContext()
+        let newVC = PlannedTripVC()
+        navigationController?.initRootViewController(vc: newVC)
     }
 }
 
@@ -152,13 +136,8 @@ extension WaypointVC: GMSAutocompleteResultsViewControllerDelegate {
         searchController?.isActive = false
         // Do something with the selected place.
 
-        // want to append string to array when I click item
-        // would need to create a waypoint because the array is of type waypoint
-        // but waypoint now needs the trip its associated with as a parameter
-        //can't access the trip here
         
         var waypointDict: [String: Any] = [:]
-//        print(place.formattedAddress)
         
         guard let unwrappedTripName = plannedTrip else {
             print("no trip name")

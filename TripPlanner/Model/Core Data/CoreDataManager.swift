@@ -5,30 +5,6 @@
 //  Created by Stephen Ouyang on 5/14/19.
 //  Copyright © 2019 Stephen Ouyang. All rights reserved.
 
-
-// create 2 entities
-//  Trip Entity
-//  Waypoint Entity
-
-// Trip Entity Properties
-    // name
-    // Trip Entity Relationship
-        // waypoints
-
-// Waypoint Entity Properties
-    // name
-    // latitude
-    // longitude
-    // Way Entity Relationship
-        // Trip
-
-// create 4 functions:
-    // create
-    // save
-    // delete
-    // fetch
-
-
 import Foundation
 import CoreData
 

@@ -166,7 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				5DE98ABF2273C1960033FD91 /* AppDelegate.swift */,
-				5DF82E86228D301E00CB69FF /* MISC */,
+				5DF82E86228D301E00CB69FF /* Misc */,
 				5D4735DB2280018F00A53896 /* Extensions */,
 				5DE98AE52273C8E70033FD91 /* ControllerConstraints */,
 				5DF740332283AD4300D8A8D4 /* Model */,
@@ -232,7 +232,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		5DF82E86228D301E00CB69FF /* MISC */ = {
+		5DF82E86228D301E00CB69FF /* Misc */ = {
 			isa = PBXGroup;
 			children = (
 				5D1FC2B9228256A200F1547A /* AccessPlist.swift */,
@@ -240,7 +240,7 @@
 				5DE2FDA22286583700B85709 /* PlaceModel.swift */,
 				5DF435E72286780E00EA7E86 /* Networking */,
 			);
-			path = MISC;
+			path = Misc;
 			sourceTree = "<group>";
 		};
 		E7AD73590BBA735CE5D320C9 /* Frameworks */ = {

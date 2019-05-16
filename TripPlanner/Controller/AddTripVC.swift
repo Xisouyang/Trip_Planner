@@ -63,6 +63,13 @@ class AddTripVC: UIViewController {
     @objc func addTapped() {
         let newVC = PlannedTripVC()
         guard let unwrappedText = addTripTextField.text else { return }
+        
+        if unwrappedText == "" {
+            let alert = UIAlertController(title: "Must enter a trip name!", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }
+        
         let newTrip = manager.createTrip(tripName: unwrappedText)
         PlannedTripVC.tripArr.append(newTrip as! Trip)
         navigationController?.initRootViewController(vc: newVC)
