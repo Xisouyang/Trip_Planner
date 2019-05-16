@@ -20,7 +20,6 @@ class PlannedTripVC: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         view.backgroundColor = .white
         setNav()
-        print(PlannedTripVC.tripArr.first?.waypoints?.count)
     }
     
     override func loadView() {

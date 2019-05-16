@@ -31,11 +31,7 @@ class WaypointVC: UIViewController {
     }()
     
     var plannedTrip: String?
-    var placesList: [Waypoint] = [] {
-        didSet {
-            waypointTableView.reloadData()
-        }
-    }
+    var placesList: [Waypoint] = []
     
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
@@ -75,11 +71,6 @@ class WaypointVC: UIViewController {
         let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         let region = MKCoordinateRegion(center: location, span: span)
         mapView.setRegion(region, animated: true)
-        
-//        guard let unwrappedAddress = waypoint.address else {
-//            print("address does not exist")
-//            return
-//        }
         
         let annotation = MKPointAnnotation()
         annotation.title = waypoint.address
@@ -188,6 +179,7 @@ extension WaypointVC: GMSAutocompleteResultsViewControllerDelegate {
         
         let waypoint = CoreDataManager.sharedManager.createWaypoint(waypointObj: waypointDict, trip: trip as! Trip) as! Waypoint
         placesList.append(waypoint)
+        waypointTableView.reloadData()
     }
     
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
@@ -212,6 +204,15 @@ extension WaypointVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let waypoint = placesList[indexPath.row]
         addPinToMap(mapView: mapView, waypoint: waypoint)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let waypointObj = placesList[indexPath.row]
+            placesList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            CoreDataManager.sharedManager.removeItem(objectID: waypointObj.objectID)
+        }
     }
 }
 
