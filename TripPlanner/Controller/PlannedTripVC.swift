@@ -20,6 +20,7 @@ class PlannedTripVC: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         view.backgroundColor = .white
         setNav()
+        print(PlannedTripVC.tripArr.first?.waypoints?.count)
     }
     
     override func loadView() {
@@ -53,7 +54,7 @@ extension PlannedTripVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let newVC = SpecificTripVC()
-        SpecificTripVC.plannedTrip = PlannedTripVC.tripArr[indexPath.row].name
+        newVC.plannedTrip = PlannedTripVC.tripArr[indexPath.row].name
         navigationController?.pushViewController(newVC, animated: true)
     }
     

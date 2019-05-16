@@ -23,18 +23,20 @@ import MapKit
 import GooglePlaces
 
 class WaypointVC: UIViewController {
-    
+        
     var waypointLabel: UILabel = {
        let label = UILabel()
        label.text = "Add Waypoint"
        return label
     }()
     
+    var plannedTrip: String?
     var placesList: [Waypoint] = [] {
         didSet {
             waypointTableView.reloadData()
         }
     }
+    
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
     // creates view to hold search bar so we can actually touch the search bar
@@ -46,6 +48,7 @@ class WaypointVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         setNav()
+        populateWaypointList()
     }
     
     override func loadView() {
@@ -64,21 +67,20 @@ class WaypointVC: UIViewController {
         mapViewConstraints()
     }
     
-//    func addWaypoints(mapView: MKMapView, cell: WaypointCell) {
-//
-//        guard let location = cell.waypoint?.coordinates else {
-//            return
-//        }
-//
-//        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-//        let region = MKCoordinateRegion(center: location, span: span)
-//        mapView.setRegion(region, animated: true)
-//
-//        let annotation = MKPointAnnotation()
-//        annotation.title = cell.waypoint?.name
-//        annotation.coordinate = location
-//        mapView.addAnnotation(annotation)
-//    }
+    func addPinToMap(mapView: MKMapView, waypoint: Waypoint) {
+        
+        let lat = waypoint.latitude
+        let long = waypoint.longitude
+        let location = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        let region = MKCoordinateRegion(center: location, span: span)
+        mapView.setRegion(region, animated: true)
+        
+        let annotation = MKPointAnnotation()
+        annotation.title = waypoint.name
+        annotation.coordinate = location
+        mapView.addAnnotation(annotation)
+    }
     
     func setTableView() {
         waypointTableView.register(WaypointCell.self, forCellReuseIdentifier: WaypointCell.identifier)
@@ -93,6 +95,25 @@ class WaypointVC: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(savedTapped))
         navigationController?.navigationBar.backgroundColor = .lightGray
+    }
+    
+    func populateWaypointList() {
+        guard let unwrappedTrip = plannedTrip else {
+            print("no trip name")
+            return
+        }
+        let trip = CoreDataManager.sharedManager.fetchTrip(tripName: unwrappedTrip) as! Trip
+        let waypoints = trip.waypoints
+        
+        guard let unwrappedWaypoints = waypoints else {
+            print("invalid waypoint list")
+            return
+        }
+        
+        for item in unwrappedWaypoints {
+            let waypoint = item as! Waypoint
+            placesList.append(waypoint)
+        }
     }
     
     // creates search bar and put at top of view
@@ -124,7 +145,7 @@ class WaypointVC: UIViewController {
 
     @objc func savedTapped() {
         print("save tapped")
-        
+        CoreDataManager.sharedManager.saveContext()
     }
 }
 
@@ -134,12 +155,25 @@ extension WaypointVC: GMSAutocompleteResultsViewControllerDelegate {
                            didAutocompleteWith place: GMSPlace) {
         searchController?.isActive = false
         // Do something with the selected place.
-        print("Place name: \(String(describing: place.name))")
-        print("Place coordinates: \(String(describing: place.coordinate))")
-//        if let unwrappedPlaceName = place.name {
-//            let waypoint = Waypoint(coordinates: place.coordinate, name: unwrappedPlaceName)
-//            placesList.append(waypoint)
-//        }
+
+        // want to append string to array when I click item
+        // would need to create a waypoint because the array is of type waypoint
+        // but waypoint now needs the trip its associated with as a parameter
+        //can't access the trip here
+        
+        guard let unwrappedTripName = plannedTrip else {
+            print("no trip name")
+            return
+        }
+        guard let unwrappedWaypointName = place.name else {
+            print("no waypoint name")
+            return
+        }
+         let trip = CoreDataManager.sharedManager.fetchTrip(tripName: unwrappedTripName)
+        let lat = place.coordinate.latitude as Double
+        let long = place.coordinate.longitude as Double
+        let waypoint = CoreDataManager.sharedManager.createWaypoint(name: unwrappedWaypointName, latitude: lat, longitude: long, trip: trip as! Trip) as! Waypoint
+        placesList.append(waypoint)
     }
     
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
@@ -162,8 +196,8 @@ extension WaypointVC: GMSAutocompleteResultsViewControllerDelegate {
 extension WaypointVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! WaypointCell
-//        addWaypoints(mapView: mapView, cell: cell)
+        let waypoint = placesList[indexPath.row]
+        addPinToMap(mapView: mapView, waypoint: waypoint)
     }
 }
 

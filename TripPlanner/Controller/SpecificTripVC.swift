@@ -10,7 +10,7 @@ import UIKit
 
 class SpecificTripVC: UIViewController {
     
-    static var plannedTrip: String?
+    var plannedTrip: String?
     
     let specificTripLabel: UILabel = {
         let label = UILabel(frame: .zero)
@@ -51,7 +51,7 @@ class SpecificTripVC: UIViewController {
     }
     
     func setNav() {
-        guard let unwrappedTitle = SpecificTripVC.plannedTrip else { return }
+        guard let unwrappedTitle = plannedTrip else { return }
         navigationItem.title = unwrappedTitle
         navigationController?.navigationBar.backgroundColor = .lightGray
     }
@@ -61,6 +61,7 @@ class SpecificTripVC: UIViewController {
     }
     @objc func addTapped() {
         let newVC = WaypointVC()
+        newVC.plannedTrip = plannedTrip
         navigationController?.pushViewController(newVC, animated: true)
     }
     

@@ -93,6 +93,62 @@ class CoreDataManager {
         return allTrips
     }
     
+    func fetchTrip(tripName: String) -> NSManagedObject? {
+        
+        var allTrips: [Trip] = []
+        var trip: Trip?
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Trip")
+        fetchRequest.predicate = NSPredicate(format: "name = %@", tripName)
+        
+        do {
+            allTrips = try context.fetch(fetchRequest) as! [Trip]
+            if allTrips.count > 0 {
+                trip = allTrips.first
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        return trip
+    }
+    
+    func createWaypoint(name: String, latitude: Double, longitude: Double, trip: Trip) -> NSManagedObject? {
+        let waypointEntity = NSEntityDescription.entity(forEntityName: "Waypoint", in: context)
+        guard let unwrappedEntity = waypointEntity else {
+            print("waypoint entity failed to unwrap")
+            return nil
+        }
+        let waypoint = NSManagedObject(entity: unwrappedEntity, insertInto: context)
+        waypoint.setValue(name, forKey: "name")
+        waypoint.setValue(latitude, forKey: "latitude")
+        waypoint.setValue(longitude, forKey: "longitude")
+        trip.addToWaypoints(waypoint as! Waypoint)
+        return waypoint
+    }
+    
+//    func fetchTripWaypoints(tripName: String) -> [NSManagedObject]? {
+//        var tripArr: [Trip] = []
+//        var trip: Trip?
+//        var tripWaypoints: [Waypoint] = []
+//        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Trip")
+//        fetchRequest.predicate = NSPredicate(format: "name = %@", tripName)
+//        
+//        do {
+//            tripArr = try context.fetch(fetchRequest) as! [Trip]
+//            if tripArr.count > 0 {
+//                trip = tripArr.first
+//                
+//                for item in (trip?.waypoints)! {
+//                    let waypoint = item as! NSManagedObject
+//                    tripWaypoints.append(waypoint as! Waypoint)
+//                }
+//            }
+//        } catch let error as NSError {
+//            print("Could not fetch. \(error), \(error.userInfo)")
+//        }
+//        return tripWaypoints
+//    }
+    
     func removeItem( objectID: NSManagedObjectID ) {
         let obj = context.object(with: objectID)
         context.delete(obj)
