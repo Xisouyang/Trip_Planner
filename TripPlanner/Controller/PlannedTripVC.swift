@@ -52,9 +52,29 @@ class PlannedTripVC: UIViewController {
 extension PlannedTripVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let newVC = SpecificTripVC()
-        newVC.plannedTrip = PlannedTripVC.tripArr[indexPath.row].name
-        navigationController?.pushViewController(newVC, animated: true)
+        let tripName = PlannedTripVC.tripArr[indexPath.row].name
+        guard let unwrappedName = tripName else {
+            print("ERROR: no trip name")
+            print("LOCATION: PlannedTripVC didSelectRowAt")
+            return
+        }
+        
+        let trip = CoreDataManager.sharedManager.fetchTrip(tripName: unwrappedName) as! Trip
+        guard let numOfWaypoints = trip.waypoints?.count else {
+            print("ERROR: invalid data: \(String(describing: trip.waypoints?.count))")
+            print("LOCATION: PlannedTripVC didSelectRowAt")
+            return
+        }
+        
+        if numOfWaypoints == 0 {
+            let newVC = SpecificTripVC()
+            newVC.plannedTrip = PlannedTripVC.tripArr[indexPath.row].name
+            navigationController?.pushViewController(newVC, animated: true)
+        } else if numOfWaypoints > 0 {
+            let newVC = WaypointVC()
+            newVC.plannedTrip = PlannedTripVC.tripArr[indexPath.row].name
+            navigationController?.pushViewController(newVC, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
