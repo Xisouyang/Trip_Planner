@@ -76,8 +76,13 @@ class WaypointVC: UIViewController {
         let region = MKCoordinateRegion(center: location, span: span)
         mapView.setRegion(region, animated: true)
         
+//        guard let unwrappedAddress = waypoint.address else {
+//            print("address does not exist")
+//            return
+//        }
+        
         let annotation = MKPointAnnotation()
-        annotation.title = waypoint.name
+        annotation.title = waypoint.address
         annotation.coordinate = location
         mapView.addAnnotation(annotation)
     }
@@ -161,6 +166,9 @@ extension WaypointVC: GMSAutocompleteResultsViewControllerDelegate {
         // but waypoint now needs the trip its associated with as a parameter
         //can't access the trip here
         
+        var waypointDict: [String: Any] = [:]
+//        print(place.formattedAddress)
+        
         guard let unwrappedTripName = plannedTrip else {
             print("no trip name")
             return
@@ -172,7 +180,13 @@ extension WaypointVC: GMSAutocompleteResultsViewControllerDelegate {
          let trip = CoreDataManager.sharedManager.fetchTrip(tripName: unwrappedTripName)
         let lat = place.coordinate.latitude as Double
         let long = place.coordinate.longitude as Double
-        let waypoint = CoreDataManager.sharedManager.createWaypoint(name: unwrappedWaypointName, latitude: lat, longitude: long, trip: trip as! Trip) as! Waypoint
+        
+        waypointDict["name"] = unwrappedWaypointName
+        waypointDict["address"] = place.formattedAddress
+        waypointDict["longitude"] = long
+        waypointDict["latitude"] = lat
+        
+        let waypoint = CoreDataManager.sharedManager.createWaypoint(waypointObj: waypointDict, trip: trip as! Trip) as! Waypoint
         placesList.append(waypoint)
     }
     

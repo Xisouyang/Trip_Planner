@@ -1,8 +1,8 @@
 //
 //  Trip+CoreDataProperties.swift
-//  Trip Planner
+//  TripPlanner
 //
-//  Created by Stephen Ouyang on 5/14/19.
+//  Created by Stephen Ouyang on 5/15/19.
 //  Copyright © 2019 Stephen Ouyang. All rights reserved.
 //
 //

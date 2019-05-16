@@ -112,16 +112,17 @@ class CoreDataManager {
         return trip
     }
     
-    func createWaypoint(name: String, latitude: Double, longitude: Double, trip: Trip) -> NSManagedObject? {
+    func createWaypoint(waypointObj: [String: Any], trip: Trip) -> NSManagedObject? {
         let waypointEntity = NSEntityDescription.entity(forEntityName: "Waypoint", in: context)
         guard let unwrappedEntity = waypointEntity else {
             print("waypoint entity failed to unwrap")
             return nil
         }
         let waypoint = NSManagedObject(entity: unwrappedEntity, insertInto: context)
-        waypoint.setValue(name, forKey: "name")
-        waypoint.setValue(latitude, forKey: "latitude")
-        waypoint.setValue(longitude, forKey: "longitude")
+//        waypoint.setValue(name, forKey: "name")
+//        waypoint.setValue(latitude, forKey: "latitude")
+//        waypoint.setValue(longitude, forKey: "longitude")
+        waypoint.setValuesForKeys(waypointObj)
         trip.addToWaypoints(waypoint as! Waypoint)
         return waypoint
     }

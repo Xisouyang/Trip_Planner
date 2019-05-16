@@ -1,8 +1,8 @@
 //
 //  Waypoint+CoreDataProperties.swift
-//  Trip Planner
+//  TripPlanner
 //
-//  Created by Stephen Ouyang on 5/14/19.
+//  Created by Stephen Ouyang on 5/15/19.
 //  Copyright © 2019 Stephen Ouyang. All rights reserved.
 //
 //
@@ -17,9 +17,10 @@ extension Waypoint {
         return NSFetchRequest<Waypoint>(entityName: "Waypoint")
     }
 
-    @NSManaged public var name: String?
-    @NSManaged public var longitude: Double
     @NSManaged public var latitude: Double
+    @NSManaged public var longitude: Double
+    @NSManaged public var name: String?
+    @NSManaged public var address: String?
     @NSManaged public var trip: Trip?
 
 }
