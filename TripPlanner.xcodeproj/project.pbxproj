@@ -31,6 +31,7 @@
 		5DF82E8C228D40D300CB69FF /* Waypoint+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF82E88228D40D300CB69FF /* Waypoint+CoreDataProperties.swift */; };
 		5DF82E8D228D40D300CB69FF /* Trip+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF82E89228D40D300CB69FF /* Trip+CoreDataClass.swift */; };
 		5DF82E8E228D40D300CB69FF /* Trip+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF82E8A228D40D300CB69FF /* Trip+CoreDataProperties.swift */; };
+		5DF82E92228D5A8300CB69FF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF82E91228D5A8300CB69FF /* Constants.swift */; };
 		5DF9D1652280B5DA00C6119D /* SpecificTripVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF9D1642280B5DA00C6119D /* SpecificTripVC.swift */; };
 		5DF9D1682280C77100C6119D /* SpecificTripVC+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF9D1672280C77100C6119D /* SpecificTripVC+Constraints.swift */; };
 		D2BC101BA1B74A590DFFC805 /* Pods_Trip_Planner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 755334D60E672D53E5AEDC5A /* Pods_Trip_Planner.framework */; };
@@ -73,6 +74,7 @@
 		5DF82E88228D40D300CB69FF /* Waypoint+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Waypoint+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5DF82E89228D40D300CB69FF /* Trip+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5DF82E8A228D40D300CB69FF /* Trip+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5DF82E91228D5A8300CB69FF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5DF8C208228D137400765FA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5DF8C20C228D168900765FA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5DF9D1642280B5DA00C6119D /* SpecificTripVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificTripVC.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				5D4735DC228001BD00A53896 /* UINavController.swift */,
+				5DF82E91228D5A8300CB69FF /* Constants.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				5DE98AC22273C1960033FD91 /* PlannedTripVC.swift in Sources */,
 				5D7F3D80228B43E900FF4F1B /* Waypoint.swift in Sources */,
 				5DE98AC82273C1960033FD91 /* Trip_Planner.xcdatamodeld in Sources */,
+				5DF82E92228D5A8300CB69FF /* Constants.swift in Sources */,
 				5DE98AC02273C1960033FD91 /* AppDelegate.swift in Sources */,
 				5DF740372283AD8900D8A8D4 /* ServiceLayer.swift in Sources */,
 				5D7F3D83228B6FDB00FF4F1B /* CoreDataManager.swift in Sources */,
