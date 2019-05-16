@@ -24,7 +24,7 @@ class SpecificTripVC: UIViewController {
     
     let startButton: UIButton = {
         let button = UIButton(frame: .zero)
-        button.setTitle("Add Trip", for: .normal)
+        button.setTitle("Add Waypoints", for: .normal)
         button.setTitleColor(UIColor.blue, for: .normal)
         button.setTitleColor(UIColor(red: 115/255, green: 194/255, blue: 251/255, alpha: 1.0), for: .highlighted)
         button.addTarget(self, action: #selector(addTapped), for: .touchUpInside)

@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 
+// cell for waypoint tableview
 class WaypointCell: UITableViewCell {
     
     static var identifier = "waypointCell"

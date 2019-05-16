@@ -29,6 +29,7 @@ class CoreDataManager {
        return persistentContainer.viewContext
     }()
     
+    // save the current data context into Core Data store
     func saveContext () {
     
         if context.hasChanges {
@@ -42,6 +43,7 @@ class CoreDataManager {
         }
     }
     
+    // create and return a single trip object
     func createTrip(tripName: String) -> NSManagedObject? {
         
         let tripEntity = NSEntityDescription.entity(forEntityName: "Trip", in: context)
@@ -55,6 +57,7 @@ class CoreDataManager {
         return trip
     }
     
+    // return all trips available in Core Data
     func fetchAllTrips() -> [NSManagedObject]? {
         
         var allTrips: [Trip] = []
@@ -69,6 +72,7 @@ class CoreDataManager {
         return allTrips
     }
     
+    // return a single trip object from Core Data
     func fetchTrip(tripName: String) -> NSManagedObject? {
         
         var allTrips: [Trip] = []
@@ -88,6 +92,7 @@ class CoreDataManager {
         return trip
     }
     
+    // create and return a single waypoint
     func createWaypoint(waypointObj: [String: Any], trip: Trip) -> NSManagedObject? {
         let waypointEntity = NSEntityDescription.entity(forEntityName: "Waypoint", in: context)
         guard let unwrappedEntity = waypointEntity else {
@@ -100,6 +105,7 @@ class CoreDataManager {
         return waypoint
     }
     
+    // remove any single item from Core Data
     func removeItem( objectID: NSManagedObjectID ) {
         let obj = context.object(with: objectID)
         context.delete(obj)

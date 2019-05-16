@@ -20,7 +20,7 @@ extension SpecificTripVC {
     func buttonConstraints() {
         startButton.translatesAutoresizingMaskIntoConstraints = false
         startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        startButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3).isActive = true
+        startButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4).isActive = true
         startButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         startButton.topAnchor.constraint(equalToSystemSpacingBelow: specificTripLabel.bottomAnchor, multiplier: 2).isActive = true
     }

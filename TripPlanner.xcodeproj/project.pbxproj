@@ -120,6 +120,7 @@
 		5D4735DB2280018F00A53896 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				5DE98AE52273C8E70033FD91 /* ControllerConstraints */,
 				5D4735DC228001BD00A53896 /* UINavController.swift */,
 				5DF82E91228D5A8300CB69FF /* Constants.swift */,
 			);
@@ -168,7 +169,6 @@
 				5DE98ABF2273C1960033FD91 /* AppDelegate.swift */,
 				5DF82E86228D301E00CB69FF /* Misc */,
 				5D4735DB2280018F00A53896 /* Extensions */,
-				5DE98AE52273C8E70033FD91 /* ControllerConstraints */,
 				5DF740332283AD4300D8A8D4 /* Model */,
 				5D7F3D7E228B419600FF4F1B /* View */,
 				5DE98AE42273C8D60033FD91 /* Controller */,
