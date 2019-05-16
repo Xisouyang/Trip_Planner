@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Trip_Planner
+@testable import TripPlanner
 
 class Trip_PlannerTests: XCTestCase {
 

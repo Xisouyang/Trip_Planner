@@ -61,20 +61,20 @@
 		5D7F3D9E228B8AE800FF4F1B /* Waypoint+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Waypoint+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5D7F3D9F228B8AE800FF4F1B /* Waypoint+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Waypoint+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5DE2FDA22286583700B85709 /* PlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceModel.swift; sourceTree = "<group>"; };
-		5DE98ABC2273C1960033FD91 /* Trip Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trip Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DE98ABC2273C1960033FD91 /* TripPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DE98ABF2273C1960033FD91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5DE98AC12273C1960033FD91 /* PlannedTripVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannedTripVC.swift; sourceTree = "<group>"; };
 		5DE98AC72273C1960033FD91 /* Trip_Planner.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Trip_Planner.xcdatamodel; sourceTree = "<group>"; };
 		5DE98AC92273C1990033FD91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5DE98ACC2273C1990033FD91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		5DE98ACE2273C1990033FD91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5DE98AD32273C1990033FD91 /* Trip PlannerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Trip PlannerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DE98AD72273C1990033FD91 /* Trip_PlannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip_PlannerTests.swift; sourceTree = "<group>"; };
-		5DE98AD92273C1990033FD91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5DE98AE22273C7CC0033FD91 /* PlannedTripVC+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlannedTripVC+Constraints.swift"; sourceTree = "<group>"; };
 		5DF435EA2287823900EA7E86 /* WaypointVC+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WaypointVC+Constraints.swift"; sourceTree = "<group>"; };
 		5DF740342283AD7C00D8A8D4 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		5DF740362283AD8900D8A8D4 /* ServiceLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLayer.swift; sourceTree = "<group>"; };
+		5DF8C208228D137400765FA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DF8C20C228D168900765FA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5DF9D1642280B5DA00C6119D /* SpecificTripVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificTripVC.swift; sourceTree = "<group>"; };
 		5DF9D1672280C77100C6119D /* SpecificTripVC+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpecificTripVC+Constraints.swift"; sourceTree = "<group>"; };
 		755334D60E672D53E5AEDC5A /* Pods_Trip_Planner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Trip_Planner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,7 +154,7 @@
 		5DE98ABD2273C1960033FD91 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5DE98ABC2273C1960033FD91 /* Trip Planner.app */,
+				5DE98ABC2273C1960033FD91 /* TripPlanner.app */,
 				5DE98AD32273C1990033FD91 /* Trip PlannerTests.xctest */,
 			);
 			name = Products;
@@ -171,7 +171,7 @@
 				5DE98AE42273C8D60033FD91 /* Controller */,
 				5DE98AC92273C1990033FD91 /* Assets.xcassets */,
 				5DE98ACB2273C1990033FD91 /* LaunchScreen.storyboard */,
-				5DE98ACE2273C1990033FD91 /* Info.plist */,
+				5DF8C208228D137400765FA1 /* Info.plist */,
 				5DE98AC62273C1960033FD91 /* Trip_Planner.xcdatamodeld */,
 			);
 			path = TripPlanner;
@@ -181,7 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				5DE98AD72273C1990033FD91 /* Trip_PlannerTests.swift */,
-				5DE98AD92273C1990033FD91 /* Info.plist */,
+				5DF8C20C228D168900765FA1 /* Info.plist */,
 			);
 			path = TripPlannerTests;
 			sourceTree = "<group>";
@@ -244,9 +244,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5DE98ABB2273C1960033FD91 /* Trip Planner */ = {
+		5DE98ABB2273C1960033FD91 /* TripPlanner */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5DE98ADC2273C1990033FD91 /* Build configuration list for PBXNativeTarget "Trip Planner" */;
+			buildConfigurationList = 5DE98ADC2273C1990033FD91 /* Build configuration list for PBXNativeTarget "TripPlanner" */;
 			buildPhases = (
 				774723909CA96655A1746BF8 /* [CP] Check Pods Manifest.lock */,
 				5DE98AB82273C1960033FD91 /* Sources */,
@@ -258,9 +258,9 @@
 			);
 			dependencies = (
 			);
-			name = "Trip Planner";
+			name = TripPlanner;
 			productName = "Trip Planner";
-			productReference = 5DE98ABC2273C1960033FD91 /* Trip Planner.app */;
+			productReference = 5DE98ABC2273C1960033FD91 /* TripPlanner.app */;
 			productType = "com.apple.product-type.application";
 		};
 		5DE98AD22273C1990033FD91 /* Trip PlannerTests */ = {
@@ -314,7 +314,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5DE98ABB2273C1960033FD91 /* Trip Planner */,
+				5DE98ABB2273C1960033FD91 /* TripPlanner */,
 				5DE98AD22273C1990033FD91 /* Trip PlannerTests */,
 			);
 		};
@@ -453,7 +453,7 @@
 /* Begin PBXTargetDependency section */
 		5DE98AD52273C1990033FD91 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5DE98ABB2273C1960033FD91 /* Trip Planner */;
+			target = 5DE98ABB2273C1960033FD91 /* TripPlanner */;
 			targetProxy = 5DE98AD42273C1990033FD91 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -521,6 +521,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"INFOPLIST_FILE[sdk=*]" = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -593,7 +594,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R7Y8QKEC95;
-				INFOPLIST_FILE = TripPlanner/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/TripPlanner/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -612,7 +613,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R7Y8QKEC95;
-				INFOPLIST_FILE = TripPlanner/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/TripPlanner/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -680,7 +681,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5DE98ADC2273C1990033FD91 /* Build configuration list for PBXNativeTarget "Trip Planner" */ = {
+		5DE98ADC2273C1990033FD91 /* Build configuration list for PBXNativeTarget "TripPlanner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5DE98ADD2273C1990033FD91 /* Debug */,
