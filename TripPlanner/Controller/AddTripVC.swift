@@ -68,11 +68,11 @@ class AddTripVC: UIViewController {
             let alert = UIAlertController(title: "Must enter a trip name!", message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
             self.present(alert, animated: true)
+        } else {
+            let newTrip = manager.createTrip(tripName: unwrappedText)
+            PlannedTripVC.tripArr.append(newTrip as! Trip)
+            navigationController?.initRootViewController(vc: newVC)
         }
-        
-        let newTrip = manager.createTrip(tripName: unwrappedText)
-        PlannedTripVC.tripArr.append(newTrip as! Trip)
-        navigationController?.initRootViewController(vc: newVC)
     }
 
     /*

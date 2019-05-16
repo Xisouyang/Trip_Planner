@@ -136,7 +136,6 @@ extension WaypointVC: GMSAutocompleteResultsViewControllerDelegate {
         searchController?.isActive = false
         // Do something with the selected place.
 
-        
         var waypointDict: [String: Any] = [:]
         
         guard let unwrappedTripName = plannedTrip else {
